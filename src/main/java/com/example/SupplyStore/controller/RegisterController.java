@@ -15,10 +15,12 @@ public class RegisterController {
         return "register"; // Loads register.jsp
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/save")
     public String registerUser(@RequestParam("name") String name,
                                @RequestParam("email") String email,
                                @RequestParam("password") String password,
+                               @RequestParam("phone") String phone,
+                               @RequestParam("address") String address,
                                Model model) {
 
         try {
@@ -38,17 +40,20 @@ public class RegisterController {
                 return "register";
             }
 
-            // Insert new user
-            String insertQuery = "INSERT INTO customer (name, email, password) VALUES (?, ?, ?)";
+            // Insert new user with full details
+            String insertQuery = "INSERT INTO customer (name, email, password, phone, address) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
             insertStmt.setString(1, name);
             insertStmt.setString(2, email);
             insertStmt.setString(3, password);
+            insertStmt.setString(4, phone);
+            insertStmt.setString(5, address);
+
             int rowsInserted = insertStmt.executeUpdate();
 
             if (rowsInserted > 0) {
                 model.addAttribute("message", "Registration successful. Please login.");
-                return "login"; // Redirect to login.jsp
+                return "login"; // login.jsp should exist in the same JSP folder
             } else {
                 model.addAttribute("error", "Registration failed. Please try again.");
                 return "register";

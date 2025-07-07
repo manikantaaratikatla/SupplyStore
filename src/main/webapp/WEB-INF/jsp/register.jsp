@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
-
 <html>
 <head>
     <title>Register - SupplyStore</title>
@@ -64,8 +63,8 @@
         <div class="error">${error}</div>
     </c:if>
 
-    <c:if test="${not empty success}">
-        <div class="success">${success}</div>
+    <c:if test="${not empty message}">
+        <div class="success">${message}</div>
     </c:if>
 
     <form action="/register/save" method="post">
@@ -77,6 +76,12 @@
 
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required>
+
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" required>
+
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" required>
 
         <button type="submit" class="btn">Register</button>
     </form>
