@@ -1,116 +1,88 @@
 package com.example.SupplyStore.entity;
 
-
-
-
-
-
-import java.util.List;
-
-import org.hibernate.annotations.ColumnDefault;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_details")
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private long id;
 
-	@Column(name = "first_name")
-	private String firstName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private long id;
 
-	@Column(name = "last_name")
-	private String lastName;
+    @Column(name = "first_name")
+    private String firstName;
 
-	@Column(name = "phno", unique = true)
-	private String phno;
+    @Column(name = "last_name")
+    private String lastName;
 
-	@Column(name = "email", unique = true)
-	private String email;
+    @Column(name = "phno", unique = true)
+    private String phno;
 
-	@Column(name = "password")
-	private String password;
+    @Column(name = "email", unique = true)
+    private String email;
 
-	@Column(name = "role")
-	@ColumnDefault("'customer'")
-	private String role;
+    @Column(name = "password")
+    private String password;
 
-	@OneToMany
-	@JoinColumn(name = "user_id")
-	private List<Address> addressList;
+    @Column(name = "role")
+    private String role = "customer"; // default value
 
-	public long getId() {
-		return id;
-	}
+    // Getters and Setters
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getPhno() {
-		return phno;
-	}
+    public String getPhno() {
+        return phno;
+    }
 
-	public void setPhno(String phno) {
-		this.phno = phno;
-	}
+    public void setPhno(String phno) {
+        this.phno = phno;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public List<Address> getAddressList() {
-		return addressList;
-	}
-
-	public void setAddressList(List<Address> addressList) {
-		this.addressList = addressList;
-	}
-
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

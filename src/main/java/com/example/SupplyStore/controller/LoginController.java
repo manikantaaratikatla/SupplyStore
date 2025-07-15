@@ -12,7 +12,7 @@ public class LoginController {
 
     @GetMapping
     public String showLoginPage() {
-        return "login"; 
+        return "login";
     }
 
     @PostMapping("/auth")
@@ -32,7 +32,8 @@ public class LoginController {
 
             if (rs.next()) {
                 model.addAttribute("name", rs.getString("name"));
-                return "home"; 
+               
+                return "redirect:/dashboard";
             } else {
                 model.addAttribute("error", "Invalid username or password.");
                 return "login";
@@ -41,7 +42,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "Database error occurred.");
-            return "error"; 
+            return "error";
         }
     }
 }
